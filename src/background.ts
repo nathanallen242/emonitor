@@ -1,8 +1,5 @@
-import { ExtensionStorage } from "./storage"
-import type { 
-  TrackedExtensionInfo, 
-  ExtensionStats 
-} from "~types/extension"
+import { ExtensionStorage } from "~storage"
+import type { TrackedExtensionInfo, ExtensionStats } from "~types/extension"
 
 class ExtensionMonitor {
   private storage: ExtensionStorage
@@ -34,7 +31,7 @@ class ExtensionMonitor {
     const extensions = await chrome.management.getAll()
     
     for (const ext of extensions) {
-      if (ext.id === chrome.runtime.id) continue // Skip self
+      if (ext.id === chrome.runtime.id) continue
 
       const trackedInfo: TrackedExtensionInfo = {
         ...ext,
@@ -70,9 +67,9 @@ class ExtensionMonitor {
   }
 
   private async handleWebRequest(details: chrome.webRequest.WebResponseDetails) {
-    if (!details.initiator?.startsWith('chrome-extension://')) return
+    if (!details.initiator?.startsWith("chrome-extension://")) return
 
-    const extensionId = details.initiator.split('/')[2]
+    const extensionId = details.initiator.split("/")[2]
     if (!this.activeExtensions.has(extensionId)) return
 
     const stats = await this.getOrCreateExtensionStats(

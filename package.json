@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@plasmohq/storage": "^1.13.0",
+    "@radix-ui/react-tabs": "^1.1.2",
     "@shadcn/ui": "^0.0.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -43,7 +44,11 @@
     "permissions": [
       "management",
       "storage",
-      "webRequest"
-    ]
+      "webRequest",
+      "unlimitedStorage"
+    ],
+    "content_security_policy": {
+      "extension_pages": "script-src 'self'; object-src 'self'"
+    }
   }
 }
