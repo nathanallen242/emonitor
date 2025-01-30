@@ -20,10 +20,10 @@ It provides real-time analytics about installed browser extensions, tracking met
 ## Preview
 
 ### Activity Tab
-<img src="https://github.com/user-attachments/assets/65c635c4-2c3c-45c1-b6c7-34d93e228e2c" alt="IMG_0248" width="300" />
+<img src="https://github.com/user-attachments/assets/e93605ff-a706-433a-98b4-ae292d4ec61c" alt="IMG_0248" width="300" />
 
 ### Extensions Tab
-<img src="https://github.com/user-attachments/assets/59ce8e05-28e8-4b00-81e4-bda5cdde9153" alt="IMG_0248" width="300" />
+<img src="https://github.com/user-attachments/assets/0804489f-ef1f-4bc6-8446-5ede96e1b356" alt="IMG_0248" width="300" />
 
 ### Summary Tab
 <img src="https://github.com/user-attachments/assets/09581702-4065-475e-b5c3-cdd4be3a1167" alt="IMG_0248" width="300" />
