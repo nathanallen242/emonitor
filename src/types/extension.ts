@@ -18,12 +18,20 @@ export interface ExtensionNetworkStats {
   };
   lastRequest: number;      // timestamp of most recent request
   firstTracked: number;     // timestamp when we started tracking
+  cpuUsage?: number;       // percentage of CPU used
+  memoryUsage?: number;    // memory in bytes
+  performanceUpdates: number; // count of performance updates collected
 }
 
 // Combined stats for storage
 export interface ExtensionStats {
   extension: TrackedExtensionInfo;
   network: ExtensionNetworkStats;
+  performance: {
+    lastUpdated: number;
+    cpu: number;
+    memory: number;
+  };
 }
 
 // For storing all extension data
