@@ -6,7 +6,7 @@ module.exports = {
     "./popup/**/*.{js,jsx,ts,tsx}",
     "./components/**/*.{js,jsx,ts,tsx}"
   ],
-  prefix: "", // Remove or set prefix to an empty string
+  prefix: "",
   theme: {
     extend: {
       colors: {

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react"
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend } from "recharts"
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@/components/ui/card"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 import {
   Clock,
   Wifi,
@@ -9,10 +10,12 @@ import {
   Shield,
   Table,
   Activity,
-  List
+  List,
+  Puzzle
 } from "lucide-react"
 import { ExtensionStorage } from "~storage"
 import type { ExtensionMonitorStore } from "~types/extension"
+import ActivityView from "~activity";
 import "./globals.css"
 
 const IndexPopup = () => {
@@ -65,7 +68,7 @@ const IndexPopup = () => {
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium">Active Extensions</CardTitle>
-                  <Clock className="h-4 w-4 text-muted-foreground" />
+                  <Clock className="h-6 w-6 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold">{activeExtensions.length}</div>
@@ -79,7 +82,7 @@ const IndexPopup = () => {
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium">Total Requests</CardTitle>
-                  <Wifi className="h-4 w-4 text-muted-foreground" />
+                  <Wifi className="h-6 w-6 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold">
@@ -93,7 +96,7 @@ const IndexPopup = () => {
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb=2">
                   <CardTitle className="text-sm font-medium">Domains Accessed</CardTitle>
-                  <Globe className="h-4 w-4 text-muted-foreground" />
+                  <Globe className="h-6 w-6 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold">
@@ -113,7 +116,7 @@ const IndexPopup = () => {
               <Card>
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium">Permissions Used</CardTitle>
-                  <Shield className="h-4 w-4 text-muted-foreground" />
+                  <Shield className="h-6 w-6 text-muted-foreground" />
                 </CardHeader>
                 <CardContent>
                   <div className="text-2xl font-bold">
@@ -132,24 +135,7 @@ const IndexPopup = () => {
 
         {/* Activity Tab */}
         <TabsContent value="activity">
-          <div className="p-4 space-y-6">
-            {/* Activity Chart */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Extension Activity</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <BarChart width={320} height={200} data={chartData}>
-                  <XAxis dataKey="name" />
-                  <YAxis />
-                  <Tooltip />
-                  <Legend />
-                  <Bar dataKey="networkRequests" fill="#8884d8" name="Network Requests" />
-                  <Bar dataKey="domains" fill="#82ca9d" name="Domains Accessed" />
-                </BarChart>
-              </CardContent>
-            </Card>
-          </div>
+          <ActivityView extensions={Object.values(store.extensions)} />
         </TabsContent>
 
         {/* Extensions Tab */}
@@ -157,18 +143,34 @@ const IndexPopup = () => {
           <div className="p-4 space-y-4">
             {extensions.map((ext) => (
               <Card key={ext.extension.id}>
-                <CardHeader className="flex flex-row items-center justify-between space-y-0">
-                  <CardTitle>{ext.extension.name}</CardTitle>
-                  <span
-                    className={`px-2 py-1 rounded-full text-xs ${
-                      ext.extension.enabled
-                        ? "bg-green-100 text-green-800"
-                        : "bg-gray-100 text-gray-800"
-                    }`}
-                  >
-                    {ext.extension.enabled ? "active" : "disabled"}
-                  </span>
+                <CardHeader className="flex flex-row items-center space-y-0">
+                  <div className="flex items-center flex-1 space-x-4">
+                    <Avatar className="h-5 w-5">
+                      <AvatarImage 
+                        src={ext.extension.icons?.[0]?.url} 
+                        alt={`${ext.extension.name} icon`}
+                      />
+                      <AvatarFallback>
+                        <Puzzle className="h-6 w-6 text-muted-foreground" />
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1">
+                      <CardTitle className="text-base">{ext.extension.name}</CardTitle>
+                    </div>
+                    <span
+                      className={`px-2 py-1 rounded-full text-xs ${
+                        ext.extension.enabled
+                          ? "bg-green-100 text-green-800"
+                          : "bg-gray-100 text-gray-800"
+                      }`}
+                    >
+                      {ext.extension.enabled ? "active" : "disabled"}
+                    </span>
+                  </div>
                 </CardHeader>
+                <CardDescription className="px-4 pb-2 text-center text-xs italic">
+                  {ext.extension.description}
+                </CardDescription>
                 <CardContent>
                   <div className="grid grid-cols-2 gap-4">
                     <div>
