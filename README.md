@@ -17,6 +17,18 @@ It provides real-time analytics about installed browser extensions, tracking met
 - React
 - Plasmo
 
+## Preview
+
+### Activity Tab
+<img src="https://github.com/user-attachments/assets/65c635c4-2c3c-45c1-b6c7-34d93e228e2c" alt="IMG_0248" width="300" />
+
+### Extensions Tab
+<img src="https://github.com/user-attachments/assets/59ce8e05-28e8-4b00-81e4-bda5cdde9153" alt="IMG_0248" width="300" />
+
+### Summary Tab
+<img src="https://github.com/user-attachments/assets/09581702-4065-475e-b5c3-cdd4be3a1167" alt="IMG_0248" width="300" />
+
+
 ## Limitations
 - chrome.webRequest only tracks requests where the initiator is explicitly the extension (e.g., background scripts).
 - Content script requests (e.g., fetch() in a webpage context) are invisible to the extension unless we modify them (e.g., via header injection).
@@ -52,3 +64,8 @@ This should create a production bundle for your extension, ready to be zipped an
 ## Submit to the webstores
 
 The easiest way to deploy your Plasmo extension is to use the built-in [bpp](https://bpp.browser.market) GitHub action. Prior to using this action however, make sure to build your extension and upload the first version to the store to establish the basic credentials. Then, simply follow [this setup instruction](https://docs.plasmo.com/framework/workflows/submit) and you should be on your way for automated submission!
+
+
+## Development Status 🚧
+
+Development is currently in progress. Stay tuned for updates and new features!
