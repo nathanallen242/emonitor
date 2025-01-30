@@ -1,5 +1,5 @@
 # eMonitor
-eMonitor is a privacy-focused browser extension that helps users understand and optimize their extension usage. 
+eMonitor is a browser extension that helps users understand and optimize their extension usage. 
 It provides real-time analytics about installed browser extensions, tracking metrics like memory consumption, CPU usage, and network activity. Users can identify resource-heavy extensions, detect potential conflicts, and receive personalized recommendations for better browser performance.
 
 ## Planned Features
